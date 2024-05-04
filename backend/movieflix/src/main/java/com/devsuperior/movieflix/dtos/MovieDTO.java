@@ -1,47 +1,35 @@
-package com.devsuperior.movieflix.entities;
+package com.devsuperior.movieflix.dtos;
 
-import javax.persistence.*;
+import com.devsuperior.movieflix.entities.Movie;
+
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
-@Entity
-@Table(name = "tb_movie")
-public class Movie implements Serializable {
+public class MovieDTO implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private Integer year;
     private String subtitle;
-
-    @Column(columnDefinition = "TEXT")
     private String imgUrl;
-
-    @Column(columnDefinition = "TEXT")
     private String synopsis;
 
-    @OneToMany(mappedBy = "movie")
-    private Set<Review> reviews = new HashSet<>();
-
-    @ManyToOne
-    @JoinColumn(name = "genre_id")
-    private Genre genre;
-
-    public Movie() {
+    public MovieDTO() {
     }
 
-    public Movie(Long id, String title, Integer year, String subtitle, String imgUrl,
-                 String synopsis, Genre genre) {
+    public MovieDTO(Long id, String title, Integer year, String subtitle, String imgUrl,
+                    String synopsis) {
         this.id = id;
         this.title = title;
         this.year = year;
         this.subtitle = subtitle;
         this.imgUrl = imgUrl;
         this.synopsis = synopsis;
-        this.genre = genre;
+    }
+
+    public MovieDTO(Movie movie) {
+        this(movie.getId(), movie.getTitle(), movie.getYear(), movie.getSubtitle(),
+                movie.getImgUrl(), movie.getSynopsis());
     }
 
     public Long getId() {
@@ -92,24 +80,12 @@ public class Movie implements Serializable {
         this.synopsis = synopsis;
     }
 
-    public Set<Review> getReviews() {
-        return reviews;
-    }
-
-    public Genre getGenre() {
-        return genre;
-    }
-
-    public void setGenre(Genre genre) {
-        this.genre = genre;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Movie)) return false;
-        Movie movie = (Movie) o;
-        return Objects.equals(getId(), movie.getId());
+        if (!(o instanceof MovieDTO)) return false;
+        MovieDTO movieDTO = (MovieDTO) o;
+        return Objects.equals(getId(), movieDTO.getId());
     }
 
     @Override
