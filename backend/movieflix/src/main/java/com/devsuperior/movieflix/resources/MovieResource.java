@@ -1,5 +1,6 @@
 package com.devsuperior.movieflix.resources;
 
+import com.devsuperior.movieflix.dtos.GenreDTO;
 import com.devsuperior.movieflix.dtos.MovieDTO;
 import com.devsuperior.movieflix.entities.Genre;
 import com.devsuperior.movieflix.services.MovieService;
@@ -21,8 +22,8 @@ public class MovieResource {
 
     @GetMapping
     public ResponseEntity<Page<MovieDTO>> pagedMovies(Pageable pageable,
-                                                      @RequestBody Genre genre) {
-        Page<MovieDTO> dtos = service.pagedMovies(pageable, genre);
+                                                      @RequestBody GenreDTO genreDTO) {
+        Page<MovieDTO> dtos = service.pagedMovies(pageable, genreDTO);
         return ResponseEntity.ok().body(dtos);
     }
 }

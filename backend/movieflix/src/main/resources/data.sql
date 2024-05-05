@@ -1,11 +1,10 @@
-INSERT INTO tb_user (name, email, password) VALUES ('Luiz Fernando', 'lufernandobs@gmail.com', '1234');
-INSERT INTO tb_user (name, email, password) VALUES ('Maria Marta', 'mmarta@gmail.com', '1234');
+INSERT INTO tb_user (name, email, password) VALUES ('Bob Fernando', 'bob@gmail.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
+INSERT INTO tb_user (name, email, password) VALUES ('Ana Marta', 'ana@gmail.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
 
-INSERT INTO tb_role (authority) VALUES ('VISITOR');
-INSERT INTO tb_role (authority) VALUES ('MEMBER');
+INSERT INTO tb_role (authority) VALUES ('ROLE_VISITOR');
+INSERT INTO tb_role (authority) VALUES ('ROLE_MEMBER');
 
 INSERT INTO tb_user_role (user_id, role_id) VALUES (1L, 1L);
-INSERT INTO tb_user_role (user_id, role_id) VALUES (2L, 1L);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (2L, 2L);
 
 INSERT INTO tb_genre(name) VALUES ('Epic');
